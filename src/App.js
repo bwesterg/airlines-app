@@ -21,11 +21,17 @@ class App extends Component {
       .then(airlines => this.setState({airlines:airlines}))
   }
 
+  addAirline = (newAirline) => {
+    this.setState({
+      airlines: [...this.state.airlines, newAirline]
+    })
+  }
+
   render(){ 
     return (
       <div className="App">
         <h1>Airlines App</h1>
-        <AirlineForm />
+        <AirlineForm addAirline={this.addAirline}/>
         <AirlineContainer airlines={this.state.airlines} />
       </div>
     );
