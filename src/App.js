@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import AirlineContainer from './components/AirlineContainer';
+import AirlineForm from './components/AirlineForm';
+
 const airlinesURL = "http://localhost:3000/airlines"
 
 class App extends Component {
@@ -13,7 +15,6 @@ class App extends Component {
     this.getAirlines()
   }
 
-
   getAirlines = () => {
     fetch(airlinesURL)
       .then(response => response.json())
@@ -24,6 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Airlines App</h1>
+        <AirlineForm />
         <AirlineContainer airlines={this.state.airlines} />
       </div>
     );
