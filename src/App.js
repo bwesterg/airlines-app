@@ -25,6 +25,22 @@ class App extends Component {
     this.setState({
       airlines: [...this.state.airlines, newAirline]
     })
+
+    fetch(airlinesURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newAirline)
+    })
+  }
+
+  deleteAirline = (id) => {
+    let filtered = this.state.airlines.filter(airline => airline.id !== id)
+    this.setState({
+      airlines: filtered
+    })
+    fetch(airlinesURL + "/" + id, { method: "DELETE" } )
   }
 
   render(){ 
@@ -32,7 +48,7 @@ class App extends Component {
       <div className="App">
         <h1>Airlines App</h1>
         <AirlineForm addAirline={this.addAirline}/>
-        <AirlineContainer airlines={this.state.airlines} />
+        <AirlineContainer deleteAirline={this.deleteAirline} airlines={this.state.airlines} />
       </div>
     );
   }
