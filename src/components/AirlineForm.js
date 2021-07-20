@@ -21,11 +21,16 @@ export default class AirlineForm extends Component {
         })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.props.addAirline(this.state)
+    }
+
 
     render(){
         const {name, image, review, rating, high_marks} = this.state
         return(
-            <form className="airline-form">
+            <form className="airline-form" onSubmit={this.handleSubmit}>
                 <h2>Add a New Airline Review</h2>
                 <label>Name</label>
                 <input 
