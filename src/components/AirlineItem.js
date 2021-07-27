@@ -12,6 +12,8 @@ export default function AirlineItem({id, name, image, review, rating, high_marks
             <h5>Overall Rating:</h5><h4>{rating}/10</h4>
             <h4>{high_marks}</h4>
             <button onClick={handleClick} className="delete-button">DELETE</button>
+            <button  className="edit-button">EDIT</button>
+
         </li>
     )
 }
