@@ -12,6 +12,22 @@ export default class AirlineForm extends Component {
 
     state = initialState
 
+    componentDidMount() {
+        const {airline} = this.props
+        if(this.props.airline){
+            const {id, name, image, review, rating, high_marks} = airline
+            this.setState({
+                id,
+                name,
+                image,
+                review,
+                rating,
+                high_marks,
+
+            })
+        }
+    }
+
     handleChange = (event) => {
         let {name, value, checked} = event.target
 
@@ -23,7 +39,10 @@ export default class AirlineForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addAirline(this.state)
+        this.props.submitAction(this.state)
+        if(this.props.handleToggle){
+            this.props.handleToggle()
+        }
     }
 
 
@@ -31,7 +50,7 @@ export default class AirlineForm extends Component {
         const {name, image, review, rating, high_marks} = this.state
         return(
             <form className="airline-form" onSubmit={this.handleSubmit}>
-                <h2>Add a New Airline Review</h2>
+                {this.props.airline ? <h2>Edit Airline</h2> : <h2>Add a New Airline Review</h2> }
                 <label>Name</label>
                 <input 
                     type="text" 
@@ -75,6 +94,7 @@ export default class AirlineForm extends Component {
                             onChange={this.handleChange}
                         />
                 </div>
+              
                 <input type="submit" className="submit-button" />
             </form>
         )

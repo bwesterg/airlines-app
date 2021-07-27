@@ -111,7 +111,7 @@ body {
   align-items: center;
   background-color: rgb(240, 240, 240);
   width: 250px;
-  height: auto;
+  height: max-content;
   box-shadow: 0 20px 20px -10px gray;
   text-align: center;
   border-radius: 6px;
