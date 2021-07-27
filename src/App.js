@@ -47,8 +47,22 @@ class App extends Component {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newAirline)
+      body: JSON.stringify({airline: newAirline})
     })
+  }
+
+  updateAirline = (updatedAirline) => {
+    let airlines = this.state.airlines.map(airline => airline.id === updatedAirline ? updatedAirline : airline)
+
+    this.setState({ airlines })
+
+    fetch(airlinesURL + "/" + updatedAirline.id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({airline: updatedAirline})
+    } )
   }
 
   deleteAirline = (id) => {
@@ -64,10 +78,10 @@ class App extends Component {
       <div className="App">
         <h1>Airlines App</h1>
         <div className="input-search">
-          <AirlineForm addAirline={this.addAirline}/>
+          <AirlineForm submitAction={this.addAirline}/>
           <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
         </div>
-        <AirlineContainer deleteAirline={this.deleteAirline} airlines={this.filteredAirlines()} />
+        <AirlineContainer updateAirline={this.updateAirline} deleteAirline={this.deleteAirline} airlines={this.filteredAirlines()} />
       </div>
     );
   }
