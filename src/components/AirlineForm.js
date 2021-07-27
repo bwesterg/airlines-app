@@ -75,7 +75,7 @@ export default class AirlineForm extends Component {
                             onChange={this.handleChange}
                         />
                 </div>
-                <input type="submit" />
+                <input type="submit" className="submit-button" />
             </form>
         )
     }
