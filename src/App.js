@@ -2,14 +2,30 @@ import React, { Component } from 'react';
 import './App.css';
 import AirlineContainer from './components/AirlineContainer';
 import AirlineForm from './components/AirlineForm';
+import AirlineFilter from './components/AirlineFilter';
 
 const airlinesURL = "http://localhost:3000/airlines"
 
 class App extends Component {
 
   state = {
-    airlines: []
+    airlines: [],
+    searchTerm: "",
   }
+
+  filteredAirlines = () => this.state.airlines
+    .filter(airline => airline.name && airline.rating)
+    .filter(airline => {
+      return airline.name
+        .toLowerCase()
+        .includes(this.state.searchTerm.toLowerCase())
+    })
+
+    updateSearchTerm = event => {
+      this.setState({
+        searchTerm: event.target.value,
+      })
+    }
 
   componentDidMount() {
     this.getAirlines()
@@ -48,7 +64,8 @@ class App extends Component {
       <div className="App">
         <h1>Airlines App</h1>
         <AirlineForm addAirline={this.addAirline}/>
-        <AirlineContainer deleteAirline={this.deleteAirline} airlines={this.state.airlines} />
+        <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
+        <AirlineContainer deleteAirline={this.deleteAirline} airlines={this.filteredAirlines()} />
       </div>
     );
   }
