@@ -105,6 +105,10 @@ body {
   background-color: rgb(225, 51, 51)
 }
 
+.edit-button {
+  background-color: rgb(40, 123, 225);
+  color: white;
+}
 
 .recommended-input {
   display: flex;
