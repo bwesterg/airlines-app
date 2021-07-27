@@ -63,8 +63,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Airlines App</h1>
-        <AirlineForm addAirline={this.addAirline}/>
-        <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
+        <div className="input-search">
+          <AirlineForm addAirline={this.addAirline}/>
+          <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
+        </div>
         <AirlineContainer deleteAirline={this.deleteAirline} airlines={this.filteredAirlines()} />
       </div>
     );
