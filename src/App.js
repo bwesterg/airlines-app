@@ -3,8 +3,9 @@ import './App.css';
 import AirlineContainer from './components/AirlineContainer';
 import AirlineForm from './components/AirlineForm';
 import AirlineFilter from './components/AirlineFilter';
+import { patchAirline, postAirline, deleteAirline } from './helpers';
 
-const airlinesURL = "http://localhost:3000/airlines"
+const airlinesURL = "http://localhost:3000/airlines/"
 
 class App extends Component {
 
@@ -36,33 +37,19 @@ class App extends Component {
       .then(response => response.json())
       .then(airlines => this.setState({airlines:airlines}))
   }
+  //the get airlines function reads better in App because setting state has to happen in App, and can't be in the helpers folder.  The fetch could be moved to helpers, but it makes more sense to keep it together with the setState.
 
   addAirline = (newAirline) => {
     this.setState({
       airlines: [...this.state.airlines, newAirline]
     })
-
-    fetch(airlinesURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({airline: newAirline})
-    })
+    postAirline(newAirline)
   }
 
   updateAirline = (updatedAirline) => {
     let airlines = this.state.airlines.map(airline => airline.id === updatedAirline ? updatedAirline : airline)
-
     this.setState({ airlines })
-
-    fetch(airlinesURL + "/" + updatedAirline.id, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({airline: updatedAirline})
-    } )
+    patchAirline(updatedAirline)
   }
 
   deleteAirline = (id) => {
@@ -70,7 +57,7 @@ class App extends Component {
     this.setState({
       airlines: filtered
     })
-    fetch(airlinesURL + "/" + id, { method: "DELETE" } )
+    deleteAirline(id)
   }
 
   render(){ 

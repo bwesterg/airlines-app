@@ -45,7 +45,11 @@ export default class AirlineForm extends Component {
         }
     }
 
-
+    showCloseButton = () => {
+        return this.props.airline
+            ? <button className="close-button" onClick={this.props.handleToggle}>Cancel Edits</button>
+            : null
+    }
     render(){
         const {name, image, review, rating, high_marks} = this.state
         return(
@@ -96,6 +100,7 @@ export default class AirlineForm extends Component {
                 </div>
               
                 <input type="submit" className="submit-button" />
+                {this.showCloseButton()}
             </form>
         )
     }

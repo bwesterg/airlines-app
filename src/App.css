@@ -145,6 +145,13 @@ body {
   font-family: Dosis;
 }
 
+.close-button {
+  background-color: rgb(216, 142, 142);
+  color: white;
+  font-family: Dosis;
+  font-weight: bold;
+}
+
 .recommended-input {
   display: flex;
   justify-content: center;
