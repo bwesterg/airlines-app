@@ -4,6 +4,7 @@ import AirlineContainer from './components/AirlineContainer';
 import AirlineForm from './components/AirlineForm';
 import AirlineFilter from './components/AirlineFilter';
 import { patchAirline, postAirline, deleteAirline } from './helpers';
+import SignUpForm from './components/SignUpForm';
 
 const airlinesURL = "http://localhost:3000/airlines/"
 
@@ -64,6 +65,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Airlines App</h1>
+        <SignUpForm />
         <div className="input-search">
           <AirlineForm submitAction={this.addAirline}/>
           <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
