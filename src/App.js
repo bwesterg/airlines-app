@@ -12,6 +12,8 @@ class App extends Component {
 
   state = {
     airlines: [],
+    user: {},
+    alert: [],
     searchTerm: "",
   }
 
@@ -61,11 +63,33 @@ class App extends Component {
     deleteAirline(id)
   }
 
+  signUp = (user) => {
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({user})
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response.errors){
+        this.setState({alerts: response.errors})
+      }
+      else {
+        this.setState({
+          user: response.user,
+          alerts: ["New User Created!"]
+        })
+      }
+    })
+  }
+
   render(){ 
     return (
       <div className="App">
         <h1>Airlines App</h1>
-        <SignUpForm />
+        <SignUpForm signUp={this.signUp} alerts={this.state.alerts}/>
         <div className="input-search">
           <AirlineForm submitAction={this.addAirline}/>
           <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
