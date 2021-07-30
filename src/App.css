@@ -106,6 +106,7 @@ body {
 
 .airline-item {
   display: flex;
+  flex-flow: unset;
   flex-direction: column;
   padding: 10px;
   align-items: center;
@@ -155,4 +156,20 @@ body {
 .recommended-input {
   display: flex;
   justify-content: center;
+}
+
+.sign-up-form {
+  display: flex;
+  flex-grow: inherit;
+  padding: 30px;
+  align-items: center;
+  background-color: rgb(240, 240, 240);
+  width: 800px;
+  height: max-content;
+  box-shadow: 0 20px 20px -10px gray;
+  text-align: center;
+  border-radius: 6px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 0px;
 }
