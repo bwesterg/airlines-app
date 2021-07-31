@@ -98,7 +98,6 @@ export default class AirlineForm extends Component {
                             onChange={this.handleChange}
                         />
                 </div>
-              
                 <input type="submit" className="submit-button" />
                 {this.showCloseButton()}
             </form>
