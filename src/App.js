@@ -93,7 +93,7 @@ class App extends Component {
         <Switch>
           
         
-        <Route path="/signup" render={<SignUpForm signUp={this.signUp} alerts={this.state.alerts}/>} />
+        <Route path="/signup" render={(routerProps) => <SignUpForm signUp={this.signUp} alerts={this.state.alerts}/>} />
         <div className="input-search">
             <AirlineForm submitAction={this.addAirline}/>
             <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
