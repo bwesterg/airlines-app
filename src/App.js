@@ -5,6 +5,7 @@ import AirlineForm from './components/AirlineForm';
 import AirlineFilter from './components/AirlineFilter';
 import { patchAirline, postAirline, deleteAirline } from './helpers';
 import SignUpForm from './components/SignUpForm';
+import {Route, Switch} from 'react-router-dom';
 
 const airlinesURL = "http://localhost:3000/airlines/"
 
@@ -89,12 +90,16 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Airlines App</h1>
-        <SignUpForm signUp={this.signUp} alerts={this.state.alerts}/>
+        <Switch>
+          
+        
+        <Route path="/signup" render={<SignUpForm signUp={this.signUp} alerts={this.state.alerts}/>} />
         <div className="input-search">
-          <AirlineForm submitAction={this.addAirline}/>
-          <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
-        </div>
-        <AirlineContainer updateAirline={this.updateAirline} deleteAirline={this.deleteAirline} airlines={this.filteredAirlines()} />
+            <AirlineForm submitAction={this.addAirline}/>
+            <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
+          </div>
+          <AirlineContainer updateAirline={this.updateAirline} deleteAirline={this.deleteAirline} airlines={this.filteredAirlines()} />
+        </Switch>
       </div>
     );
   }
