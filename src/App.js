@@ -86,11 +86,13 @@ class App extends Component {
     })
   }
 
+
+  // add back in switch for testing private route
   render(){ 
     return (
       <div className="App">
         <h1>Airlines App</h1>
-        <Switch>
+        {/* <Switch> */}
           
         
         <Route path="/signup" render={(routerProps) => <SignUpForm signUp={this.signUp} alerts={this.state.alerts}/>} />
@@ -99,7 +101,7 @@ class App extends Component {
             <AirlineFilter searchTerm={this.state.searchTerm} updateSearchTerm={this.updateSearchTerm}/>
           </div>
           <AirlineContainer updateAirline={this.updateAirline} deleteAirline={this.deleteAirline} airlines={this.filteredAirlines()} />
-        </Switch>
+        {/* </Switch> */}
       </div>
     );
   }
